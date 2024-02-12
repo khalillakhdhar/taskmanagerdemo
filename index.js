@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const port=4000;
 const express = require('express');
 const app = express();
+const taskRoutes = require('./src/routes/taskRoutes');
 const bodyParser = require('body-parser');
 const uri="mongodb+srv://khalillakhdharatc:i3YobGwbrZsp7K2u@cluster0.fquyznt.mongodb.net/?retryWrites=true&w=majority"
 mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true})
@@ -9,7 +10,9 @@ mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true})
 .catch(err => console.error('Could not connect to MongoDB', err));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+//app.use('/api', taskRoutes);
+app.use(express.json());
+app.use('/api', taskRoutes);
 app.get('/', (req, res) => {
     res.send('Welcome to Task Manager!');
 });
