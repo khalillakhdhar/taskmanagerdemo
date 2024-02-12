@@ -9,6 +9,7 @@ mongoose.connect(uri, {useNewUrlParser: true, useUnifiedTopology: true})
 .catch(err => console.error('Could not connect to MongoDB', err));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
 app.get('/', (req, res) => {
     res.send('Welcome to Task Manager!');
 });
